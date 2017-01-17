@@ -24,6 +24,10 @@ server.use(
   }
 );
 
+server.get(/\/public\/?.*/, restify.serveStatic({
+  directory: __dirname
+}));
+
 require('./models');
 
 restifyMongoose(mongoose.model('User')).serve(basePath + '/users', server);
